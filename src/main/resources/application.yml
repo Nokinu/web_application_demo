@@ -1,2 +1,10 @@
+#Port
 server:
   port: 8091
+
+#Monogo DB connection
+spring:
+  data:
+    mongodb:
+      database: sample_mflix
+      uri: mongodb+srv://m220student:m220password@m220.dp7vh.mongodb.net/sample_mflix?retryWrites=true&w=majority
