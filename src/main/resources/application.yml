@@ -2,9 +2,30 @@
 server:
   port: 8091
 
-#Monogo DB connection
 spring:
+  #Monogo DB connection
   data:
     mongodb:
       database: sample_mflix
       uri: mongodb+srv://m220student:m220password@m220.dp7vh.mongodb.net/sample_mflix?retryWrites=true&w=majority
+
+  #Redis config
+  redis:
+    database: 3
+    host: localhost
+    port: 6379
+    password: 12345
+    jedis:
+      pool:
+        max-idle: 100
+        max-wait: -1ms
+        min-idle: 2
+
+  layering-cache:
+    stats: true
+    namespace: layering-cache
+    layeringCacheServletEnabled: true
+    urlPattern: /layering-cache/*
+    loginUsername: admin
+    loginPassword: 123456
+    enableUpdate: true
