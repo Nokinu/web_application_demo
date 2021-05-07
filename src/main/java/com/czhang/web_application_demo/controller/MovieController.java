@@ -21,6 +21,9 @@ public class MovieController {
     @GetMapping("/movies_title/{title}")
     @ResponseBody
     public ResponseEntity<String> getMovieByTitle(@PathVariable(value = "title") String title) {
+        if(movieService.getMovieByTitle(title) == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.of(Optional.of(movieService.getMovieByTitle(title)));
 
     }

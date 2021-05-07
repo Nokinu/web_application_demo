@@ -1,7 +1,7 @@
 #Port
 server:
   port: 8091
-
+debug: true
 spring:
   #Monogo DB connection
   data:
@@ -9,23 +9,28 @@ spring:
       database: sample_mflix
       uri: mongodb+srv://m220student:m220password@m220.dp7vh.mongodb.net/sample_mflix?retryWrites=true&w=majority
 
-  #Redis config
+layering-cache:
   redis:
-    database: 3
     host: localhost
     port: 6379
-    password: 12345
-    jedis:
-      pool:
-        max-idle: 100
-        max-wait: -1ms
-        min-idle: 2
+    serializer: com.github.xiaolyuh.redis.serializer.JacksonRedisSerializer
 
-  layering-cache:
-    stats: true
-    namespace: layering-cache
-    layeringCacheServletEnabled: true
-    urlPattern: /layering-cache/*
-    loginUsername: admin
-    loginPassword: 123456
-    enableUpdate: true
+resilience4j:
+  retry:
+    retry-aspect-order: 399
+    backends:
+      retryA:
+        maxRetryAttempts: 5
+        waitDuration: 500
+        exponentialBackoffMultipliter: 1.1
+        retryException:
+          - java.lang.RuntimeException
+  circuitbreaker:
+    instances:
+      cbA:
+        ringBufferSizeInClosedState: 5
+        ringBufferSizeInHalfOpenState: 3
+        waitInterval: 5000
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+    circuit-breaker-aspect-order: 400

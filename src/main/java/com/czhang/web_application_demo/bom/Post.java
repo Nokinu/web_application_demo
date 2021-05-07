@@ -5,21 +5,13 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 public class Post {
 
-    @Setter
-    @Getter
+
     private String userId;
-
-    @Setter
-    @Getter
     private String id;
-
-    @Setter
-    @Getter
     private String title;
-
-    @Setter
-    @Getter
     private String body;
 }

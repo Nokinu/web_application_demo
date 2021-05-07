@@ -8,7 +8,11 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class Tomatoes {
 
 	@JsonProperty("viewer")
@@ -17,26 +21,6 @@ public class Tomatoes {
 	private Date lastUpdated;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-	@JsonProperty("viewer")
-	public Viewer getViewer() {
-		return viewer;
-	}
-
-	@JsonProperty("viewer")
-	public void setViewer(Viewer viewer) {
-		this.viewer = viewer;
-	}
-
-	@JsonProperty("lastUpdated")
-	public Date getLastUpdated() {
-		return lastUpdated;
-	}
-
-	@JsonProperty("lastUpdated")
-	public void setLastUpdated(Date lastUpdated) {
-		this.lastUpdated = lastUpdated;
-	}
 
 	@JsonAnyGetter
 	public Map<String, Object> getAdditionalProperties() {

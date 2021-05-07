@@ -7,7 +7,11 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class Imdb {
 
 	@JsonProperty("rating")
@@ -18,36 +22,6 @@ public class Imdb {
 	private Integer id;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-	@JsonProperty("rating")
-	public Double getRating() {
-		return rating;
-	}
-
-	@JsonProperty("rating")
-	public void setRating(Double rating) {
-		this.rating = rating;
-	}
-
-	@JsonProperty("votes")
-	public Integer getVotes() {
-		return votes;
-	}
-
-	@JsonProperty("votes")
-	public void setVotes(Integer votes) {
-		this.votes = votes;
-	}
-
-	@JsonProperty("id")
-	public Integer getId() {
-		return id;
-	}
-
-	@JsonProperty("id")
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	@JsonAnyGetter
 	public Map<String, Object> getAdditionalProperties() {

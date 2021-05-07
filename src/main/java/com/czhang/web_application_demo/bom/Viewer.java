@@ -7,7 +7,11 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class Viewer {
 
 	@JsonProperty("rating")
@@ -18,36 +22,6 @@ public class Viewer {
 	private Integer meter;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-	@JsonProperty("rating")
-	public Integer getRating() {
-		return rating;
-	}
-
-	@JsonProperty("rating")
-	public void setRating(Integer rating) {
-		this.rating = rating;
-	}
-
-	@JsonProperty("numReviews")
-	public Integer getNumReviews() {
-		return numReviews;
-	}
-
-	@JsonProperty("numReviews")
-	public void setNumReviews(Integer numReviews) {
-		this.numReviews = numReviews;
-	}
-
-	@JsonProperty("meter")
-	public Integer getMeter() {
-		return meter;
-	}
-
-	@JsonProperty("meter")
-	public void setMeter(Integer meter) {
-		this.meter = meter;
-	}
 
 	@JsonAnyGetter
 	public Map<String, Object> getAdditionalProperties() {
