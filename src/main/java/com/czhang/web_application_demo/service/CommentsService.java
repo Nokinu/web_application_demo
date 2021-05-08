@@ -22,8 +22,12 @@ public class CommentsService {
     @SystemLog
     @Transactional
     public boolean addComments(Comments comments) {
-        Comments result = commentsRespository.save(comments);
-        boolean apiUpdated = thirdPartyAPIRepository.postComment(comments);
-        return apiUpdated && result != null;
+        try {
+            Comments result = commentsRespository.save(comments);
+            boolean apiUpdated = thirdPartyAPIRepository.postComment(comments);
+            return apiUpdated && result != null;
+        } catch (Exception exception) {
+            throw exception;
+        }
     }
 }
