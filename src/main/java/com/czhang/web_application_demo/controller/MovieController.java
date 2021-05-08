@@ -1,5 +1,6 @@
 package com.czhang.web_application_demo.controller;
 
+import com.czhang.web_application_demo.aop.SystemLog;
 import com.czhang.web_application_demo.service.MovieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
+    @SystemLog
     @GetMapping("/movies_title/{title}")
     @ResponseBody
     public ResponseEntity<String> getMovieByTitle(@PathVariable(value = "title") String title) {

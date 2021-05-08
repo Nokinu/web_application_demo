@@ -3,6 +3,7 @@ package com.czhang.web_application_demo.service;
 import com.czhang.web_application_demo.aop.BloomFilterLimit;
 import com.czhang.web_application_demo.aop.RateLimit;
 import com.czhang.web_application_demo.aop.RedisLock;
+import com.czhang.web_application_demo.aop.SystemLog;
 import com.czhang.web_application_demo.repository.MovieRespository;
 import com.github.xiaolyuh.annotation.Cacheable;
 import com.github.xiaolyuh.annotation.FirstCache;
@@ -17,13 +18,13 @@ import java.util.concurrent.TimeUnit;
 public class MovieService {
 
     private final MovieRespository movieRespository;
-    private final static Logger logger = LoggerFactory.getLogger(MovieService.class);
 
     public MovieService(MovieRespository movieRespository) {
         this.movieRespository = movieRespository;
     }
 
 
+    @SystemLog(description = "Return movie information by title")
     @RateLimit
     // Use Bloom filter to avoid Cache Penetration
     @BloomFilterLimit
@@ -34,7 +35,6 @@ public class MovieService {
     // Use lock to avoid Hotspot Invalid
     @RedisLock(lockKey = "T(com.czhang.web_application_demo.constants.MovieServiceConstants).MOVIE_LOCK_KEY")
     public String getMovieByTitle(String title) {
-        logger.info("To retrieve the info for movie [{}] from DB", title);
         return movieRespository.findByTitle(title);
     }
 }

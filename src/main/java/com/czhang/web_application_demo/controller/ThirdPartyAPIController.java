@@ -1,5 +1,6 @@
 package com.czhang.web_application_demo.controller;
 
+import com.czhang.web_application_demo.aop.SystemLog;
 import com.czhang.web_application_demo.bom.Post;
 import com.czhang.web_application_demo.service.ThirdPartyAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class ThirdPartyAPIController {
         this.thirdPartyAPIService = thirdPartyAPIService;
     }
 
+    @SystemLog
     @GetMapping("/posts")
     @ResponseBody
     public ResponseEntity getAllPosts() {

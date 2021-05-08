@@ -8,6 +8,11 @@ spring:
     mongodb:
       database: sample_mflix
       uri: mongodb+srv://m220student:m220password@m220.dp7vh.mongodb.net/sample_mflix?retryWrites=true&w=majority
+  rabbitmq:
+    port: 5672
+    listener:
+      simple:
+        acknowledge-mode: manual
 
 layering-cache:
   redis:
@@ -34,3 +39,4 @@ resilience4j:
         recordExceptions:
           - org.springframework.web.client.HttpServerErrorException
     circuit-breaker-aspect-order: 400
+

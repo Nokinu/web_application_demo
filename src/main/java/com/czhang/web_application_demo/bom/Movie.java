@@ -1,23 +1,15 @@
 package com.czhang.web_application_demo.bom;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import java.util.*;
 
 @Document(collection = "movies")
 @Setter
@@ -32,11 +24,11 @@ public class Movie {
 	@JsonProperty("plot")
 	private String plot;
 	@JsonProperty("genres")
-	private List<String> genres = new ArrayList<String>();
+	private List<String> genres = new ArrayList<>();
 	@JsonProperty("runtime")
 	private Integer runtime;
 	@JsonProperty("cast")
-	private List<String> cast = new ArrayList<String>();
+	private List<String> cast = new ArrayList<>();
 	@JsonProperty("num_mflix_comments")
 	private Integer numMflixComments;
 	@JsonProperty("title")
@@ -44,11 +36,11 @@ public class Movie {
 	@JsonProperty("fullplot")
 	private String fullplot;
 	@JsonProperty("countries")
-	private List<String> countries = new ArrayList<String>();
+	private List<String> countries = new ArrayList<>();
 	@JsonProperty("released")
 	private Date released;
 	@JsonProperty("directors")
-	private List<String> directors = new ArrayList<String>();
+	private List<String> directors = new ArrayList<>();
 	@JsonProperty("rated")
 	private String rated;
 	@JsonProperty("awards")
@@ -64,15 +56,5 @@ public class Movie {
 	@JsonProperty("tomatoes")
 	private Tomatoes tomatoes;
 	@JsonIgnore
-	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-	@JsonAnyGetter
-	public Map<String, Object> getAdditionalProperties() {
-		return this.additionalProperties;
-	}
-
-	@JsonAnySetter
-	public void setAdditionalProperty(String name, Object value) {
-		this.additionalProperties.put(name, value);
-	}
+	private Map<String, Object> additionalProperties = new HashMap<>();
 }
