@@ -9,11 +9,10 @@ import static org.mockito.Mockito.*;
 public class MovieControllerUnitTest {
 
     @Test
-    public void testGetMovieByTitle() {
+    public void getMovieByTitle() {
         MovieService movieService = Mockito.mock(MovieService.class);
         when(movieService.getMovieByTitle("Test")).thenReturn("Result");
         MovieController movieController = new MovieController(movieService);
         Assertions.assertEquals(movieController.getMovieByTitle("Test").getBody(), "Result");
-
     }
 }
