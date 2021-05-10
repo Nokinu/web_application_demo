@@ -19,7 +19,7 @@ public class CommentsController {
     }
 
     @SystemLog
-    @PostMapping("/comments")
+    @PostMapping("/api/v1/comments")
     @ResponseBody
     public ResponseEntity<String> addComments(@RequestBody Comments comments) {
         mqSender.sendAddCommentsMessage(comments);

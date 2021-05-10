@@ -23,7 +23,7 @@ public class ThirdPartyAPIController {
     }
 
     @SystemLog
-    @GetMapping("/posts")
+    @GetMapping("api/vi/posts")
     @ResponseBody
     public ResponseEntity getAllPosts() {
         List<Post> posts = thirdPartyAPIService.getAllPosts();

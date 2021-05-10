@@ -20,7 +20,7 @@ public class MovieController {
     }
 
     @SystemLog
-    @GetMapping("/movies_title/{title}")
+    @GetMapping("api/v1/movies_title/{title}")
     @ResponseBody
     public ResponseEntity<String> getMovieByTitle(@PathVariable(value = "title") String title) {
         if(movieService.getMovieByTitle(title) == null) {
